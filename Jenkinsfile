@@ -57,7 +57,7 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('docker') {
-          sh "Docker build submit -t us-west1-docker.pkg.dev/esty-dev/estydev-repo/${APP_NAME} . "
+          sh "build -t us-west1-docker.pkg.dev/esty-dev/estydev-repo/${APP_NAME} . "
         }
       }
     }
