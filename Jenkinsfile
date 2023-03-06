@@ -57,7 +57,7 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${params.IMAGE_URL}:${GIT_COMMIT}"
+          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t us-west1-docker.pkg.dev/esty-dev/estydev-repo/${APP_NAME}"
         }
       }
     }
