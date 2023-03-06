@@ -29,8 +29,8 @@ spec:
     command:
     - cat
     tty: true
-  - name: gcloud
-    image: gcr.io/cloud-builders/gcloud
+  - name: docker
+    image: gcr.io/cloud-builders/docker
     command:
     - cat
     tty: true
@@ -56,8 +56,8 @@ spec:
     }
     stage('Build and push image with Container Builder') {
       steps {
-        container('gcloud') {
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t us-west1-docker.pkg.dev/esty-dev/estydev-repo/${APP_NAME}"
+        container('docker') {
+          sh "Docker build submit -t us-west1-docker.pkg.dev/esty-dev/estydev-repo/${APP_NAME} . "
         }
       }
     }
