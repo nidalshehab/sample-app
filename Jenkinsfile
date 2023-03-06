@@ -1,11 +1,11 @@
 pipeline {
 
   environment {
-    PROJECT = "REPLACE_WITH_YOUR_PROJECT_ID"
+    PROJECT = "esty-dev"
     APP_NAME = "gceme"
     FE_SVC_NAME = "${APP_NAME}-frontend"
-    CLUSTER = "jenkins-cd"
-    CLUSTER_ZONE = "us-east1-d"
+    CLUSTER = "estydev-cluster-gke"
+    CLUSTER_ZONE = "us-west1-a"
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
   }
@@ -22,7 +22,7 @@ labels:
   component: ci
 spec:
   # Use service account that can deploy to all namespaces
-  serviceAccountName: cd-jenkins
+  serviceAccountName: jenkins-admin
   containers:
   - name: golang
     image: golang:1.10
