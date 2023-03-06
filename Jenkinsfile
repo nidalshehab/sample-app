@@ -6,7 +6,7 @@ pipeline {
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "estydev-cluster-gke"
     CLUSTER_ZONE = "us-west1-a"
-    IMAGE_TAG = "us-west1-docker.pkg.dev/esty-dev/estydev-repo/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
   }
 
@@ -29,8 +29,8 @@ spec:
     command:
     - cat
     tty: true
-  - name: docker
-    image: gcr.io/cloud-builders/docker
+  - name: gcloud
+    image: gcr.io/cloud-builders/gcloud
     command:
     - cat
     tty: true
@@ -56,8 +56,8 @@ spec:
     }
     stage('Build and push image with Container Builder') {
       steps {
-        container('docker') {
-          sh "build -t us-west1-docker.pkg.dev/esty-dev/estydev-repo/${APP_NAME} . "
+        container('gcloud') {
+          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t  ${IMAGE_TAG} ."
         }
       }
     }
