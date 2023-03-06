@@ -30,12 +30,12 @@ spec:
     - cat
     tty: true
   - name: gcloud
-    image: us-docker.pkg.dev/esty-dev/gcr.io/cloud-builders/gcloud
+    image: gcr.io/cloud-builders/gcloud
     command:
     - cat
     tty: true
   - name: kubectl
-    image: us-docker.pkg.dev/esty-dev/gcr.io/cloud-builders/kubectl
+    image: gcr.io/cloud-builders/kubectl
     command:
     - cat
     tty: true
