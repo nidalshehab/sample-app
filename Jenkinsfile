@@ -22,7 +22,7 @@ labels:
   component: ci
 spec:
   # Use service account that can deploy to all namespaces
-  serviceAccountName: default
+  serviceAccountName: jenkins-admin
   containers:
   - name: golang
     image: golang:1.10
@@ -57,7 +57,7 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('gcloud') {
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t  ${IMAGE_TAG} ."
+          sh "PYTHONUNBUFFERED=1 gcloud container builds submit -t  ${IMAGE_TAG} ."
         }
       }
     }
