@@ -5,7 +5,7 @@ pipeline {
     APP_NAME = "gceme"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "estydev-cluster-gke"
-    CLUSTER_ZONE = "us-west1-a"
+    CLUSTER_ZONE = "us-west1"
     IMAGE_TAG = "us-west1-docker.pkg.dev/esty-dev/estydev-repo/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
   }
